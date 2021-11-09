@@ -1,0 +1,172 @@
+print(type(None))
+
+# We can create our own class.
+# Objects can created through class.
+class BigObject:
+  pass
+obj1 = BigObject() #object
+print(type(obj1))
+
+# Class is a blueprint of what we want to create.
+# Class can be instantiated to create different instances i.e. objects/instance
+# Class is going to be stored in the memory and whenever an object will be created, it will find the class in the memory and runs the code for that.compile
+
+# Example
+class PlayerCharacter():
+
+  # Class Object Attribute
+  membership = True # it is not dynamic.
+
+  def __init__(self, name, age): # constructor method
+    if (self.membership):
+      self.name = name
+      self.age = age
+
+  def run(self):
+    print('run')
+
+  @classmethod
+  def adding_things(cls,num1, num2):
+    return num1 + num2
+
+  @staticmethod
+  def add_things(num1, num2):
+    return num1 + num2
+
+player1 = PlayerCharacter('Agam',25)
+print(player1)
+print(player1.adding_things(2,3))
+
+# self refers to class PlayerCharacter object
+# so player.name = name
+
+player2 = PlayerCharacter('Tom',45)
+print(player2.name)
+print(player2.age)
+print(player1.run())
+
+# Both player1 and player2 objects will be stored in a different memory 
+
+print(player1.membership)
+
+
+# Constructor : A constructor enables you to provide any custom initialization that must be done before any other methods can be called on an instantiated object.
+
+# Methods for class
+@classmethod
+def adding_things(num1, num2):
+  return num1 + num2
+
+# Class Method
+print(PlayerCharacter.adding_things(5,5))
+
+# 4 Pillars of OOP
+
+# 1. Encapsulation : Encapsulation is one of the fundamentals of OOP (object-oriented programming). It refers to the bundling of data with the methods that operate on that data.
+
+# 2. Abstraction : Abstraction is used to hide the internal functionality of the function from the users.
+
+class PlayerCharacter():
+
+  # Class Object Attribute
+  membership = True # it is not dynamic.
+
+  def __init__(self, name, age): # constructor method
+    if (self.membership):
+      self._name = name
+      self._age = age
+
+# 3. Inheritance : It allows new objects to take the properties or inherit the proprties of existing objects.
+
+class User():
+  def sign_in(self):
+    print('logged in')
+
+class Wizard(User):
+  def __init__(self, name, power):
+    self.name = name
+    self.power = power
+
+  def attack(self):
+    print(f'Attacking with power of {self.power}')
+
+wizard1 = Wizard('Agam',50)
+print(wizard1.attack())
+
+print(isinstance(wizard1, Wizard))
+print(isinstance(wizard1, User)) 
+
+# Every object/instance is inherited by object base class in python.
+print(isinstance(wizard1, Wizard))
+
+# 4. Polymorphism : the ability of a message to be displayed in more than one form. A real-life example of polymorphism, a person at the same time can have different characteristics. Like a man at the same time is a father, a husband, an employee. So the same person posses different behavior in different situations. This is called polymorphism. Polymorphism is considered as one of the important features of Object Oriented Programming.
+
+# super()
+class User():
+  def __init__(self, email):
+    self.email = email
+
+  def sign_in():
+    print('Logged In')
+
+class Wizard(User):
+  def __init__(self, name, power, email):
+    super().__init__(email)
+    self.name = name
+    self.power = power
+
+wizard2 = Wizard('MaryKom', 89, 'marykom@gmail.com')
+print(wizard2.email)
+
+# Introspection
+print(dir(wizard2))
+
+# Dunder Methods:Dunder methods are a contract between the person who made the class, and Python itself. As Python programmers, we're not supposed to call dunder methods directly. Instead, we're meant to use the high-level operations (like the + and == operators) that rely on those dunder methods.
+class Toy():
+  def __init__(self, color, age):
+    self.color = color
+    self.age = age
+
+  def __len__(self):
+    return 5
+
+  
+
+action_figure = Toy('Red', 4)
+print(action_figure.__str__())
+print(action_figure.__len__()) # Customization in Dunder methods
+
+# Inheriting a list
+class SuperList(list):
+  def __len__(self):
+    return 1234
+  
+super1 = SuperList();
+print(len(super1))
+super1.append(56)
+print(super1[0])
+
+
+# Multiple Inheritance
+#class HybridBorg(Wizard, Archer):
+#  def __init__(self, name, power, arrows):
+#    Wizard.__init__(self, name, arrows)
+
+
+# Method Resolution Order
+class A:
+  num = 100
+
+class B(A):
+  num = 1000
+
+class C(A):
+  num = 1
+
+class D(B,C):
+  pass
+
+print(D.num)
+print(D.mro())
+
+    
